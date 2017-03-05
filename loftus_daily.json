@@ -1,0 +1,253 @@
+{
+    "SiteRep": {
+        "DV": {
+            "Location": {
+                "Period": [
+                    {
+                        "Rep": [
+                            {
+                                "$": "Day",
+                                "D": "SSE",
+                                "Dm": "8",
+                                "FDm": "6",
+                                "Gn": "16",
+                                "Hn": "74",
+                                "PPd": "12",
+                                "S": "9",
+                                "U": "2",
+                                "V": "GO",
+                                "W": "7"
+                            },
+                            {
+                                "$": "Night",
+                                "D": "NNE",
+                                "FNm": "1",
+                                "Gm": "13",
+                                "Hm": "97",
+                                "Nm": "4",
+                                "PPn": "49",
+                                "S": "9",
+                                "V": "GO",
+                                "W": "8"
+                            }
+                        ],
+                        "type": "Day",
+                        "value": "2017-03-05Z"
+                    },
+                    {
+                        "Rep": [
+                            {
+                                "$": "Day",
+                                "D": "NNW",
+                                "Dm": "7",
+                                "FDm": "3",
+                                "Gn": "18",
+                                "Hn": "91",
+                                "PPd": "44",
+                                "S": "11",
+                                "U": "2",
+                                "V": "GO",
+                                "W": "7"
+                            },
+                            {
+                                "$": "Night",
+                                "D": "W",
+                                "FNm": "0",
+                                "Gm": "13",
+                                "Hm": "93",
+                                "Nm": "3",
+                                "PPn": "42",
+                                "S": "9",
+                                "V": "GO",
+                                "W": "2"
+                            }
+                        ],
+                        "type": "Day",
+                        "value": "2017-03-06Z"
+                    },
+                    {
+                        "Rep": [
+                            {
+                                "$": "Day",
+                                "D": "SSW",
+                                "Dm": "9",
+                                "FDm": "5",
+                                "Gn": "16",
+                                "Hn": "73",
+                                "PPd": "19",
+                                "S": "9",
+                                "U": "2",
+                                "V": "VG",
+                                "W": "7"
+                            },
+                            {
+                                "$": "Night",
+                                "D": "SSW",
+                                "FNm": "0",
+                                "Gm": "36",
+                                "Hm": "91",
+                                "Nm": "4",
+                                "PPn": "56",
+                                "S": "22",
+                                "V": "GO",
+                                "W": "12"
+                            }
+                        ],
+                        "type": "Day",
+                        "value": "2017-03-07Z"
+                    },
+                    {
+                        "Rep": [
+                            {
+                                "$": "Day",
+                                "D": "WSW",
+                                "Dm": "11",
+                                "FDm": "6",
+                                "Gn": "36",
+                                "Hn": "68",
+                                "PPd": "21",
+                                "S": "22",
+                                "U": "2",
+                                "V": "VG",
+                                "W": "1"
+                            },
+                            {
+                                "$": "Night",
+                                "D": "SW",
+                                "FNm": "1",
+                                "Gm": "25",
+                                "Hm": "86",
+                                "Nm": "4",
+                                "PPn": "8",
+                                "S": "16",
+                                "V": "VG",
+                                "W": "0"
+                            }
+                        ],
+                        "type": "Day",
+                        "value": "2017-03-08Z"
+                    },
+                    {
+                        "Rep": [
+                            {
+                                "$": "Day",
+                                "D": "SW",
+                                "Dm": "10",
+                                "FDm": "6",
+                                "Gn": "27",
+                                "Hn": "77",
+                                "PPd": "18",
+                                "S": "16",
+                                "U": "1",
+                                "V": "VG",
+                                "W": "7"
+                            },
+                            {
+                                "$": "Night",
+                                "D": "SW",
+                                "FNm": "3",
+                                "Gm": "29",
+                                "Hm": "90",
+                                "Nm": "6",
+                                "PPn": "18",
+                                "S": "18",
+                                "V": "GO",
+                                "W": "7"
+                            }
+                        ],
+                        "type": "Day",
+                        "value": "2017-03-09Z"
+                    }
+                ],
+                "continent": "EUROPE",
+                "country": "ENGLAND",
+                "elevation": "158.0",
+                "i": "3275",
+                "lat": "54.563",
+                "lon": "-0.863",
+                "name": "LOFTUS (SAMOS)"
+            },
+            "dataDate": "2017-03-05T14:00:00Z",
+            "type": "Forecast"
+        },
+        "Wx": {
+            "Param": [
+                {
+                    "$": "Feels Like Day Maximum Temperature",
+                    "name": "FDm",
+                    "units": "C"
+                },
+                {
+                    "$": "Feels Like Night Minimum Temperature",
+                    "name": "FNm",
+                    "units": "C"
+                },
+                {
+                    "$": "Day Maximum Temperature",
+                    "name": "Dm",
+                    "units": "C"
+                },
+                {
+                    "$": "Night Minimum Temperature",
+                    "name": "Nm",
+                    "units": "C"
+                },
+                {
+                    "$": "Wind Gust Noon",
+                    "name": "Gn",
+                    "units": "mph"
+                },
+                {
+                    "$": "Wind Gust Midnight",
+                    "name": "Gm",
+                    "units": "mph"
+                },
+                {
+                    "$": "Screen Relative Humidity Noon",
+                    "name": "Hn",
+                    "units": "%"
+                },
+                {
+                    "$": "Screen Relative Humidity Midnight",
+                    "name": "Hm",
+                    "units": "%"
+                },
+                {
+                    "$": "Visibility",
+                    "name": "V",
+                    "units": ""
+                },
+                {
+                    "$": "Wind Direction",
+                    "name": "D",
+                    "units": "compass"
+                },
+                {
+                    "$": "Wind Speed",
+                    "name": "S",
+                    "units": "mph"
+                },
+                {
+                    "$": "Max UV Index",
+                    "name": "U",
+                    "units": ""
+                },
+                {
+                    "$": "Weather Type",
+                    "name": "W",
+                    "units": ""
+                },
+                {
+                    "$": "Precipitation Probability Day",
+                    "name": "PPd",
+                    "units": "%"
+                },
+                {
+                    "$": "Precipitation Probability Night",
+                    "name": "PPn",
+                    "units": "%"
+                }
+            ]
+        }
+    }
+}
