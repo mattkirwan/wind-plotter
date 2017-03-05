@@ -2,6 +2,7 @@
 
 var Table = require('cli-table');
 
+// curl http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/3275\?res\=3hourly\&key\=[YOUR_API_KEY] | python -m json.tool > loftus_3hr_forecast.json
 let loftus = require('./loftus_3hr_forecast.json');
 
 let filtered = loftus.SiteRep.DV.Location.Period[0].Rep.map((data) => {
