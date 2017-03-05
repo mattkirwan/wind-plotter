@@ -1,10 +1,12 @@
 'use strict';
 
 const Table = require('cli-table');
+const gridSize = 14;
+const gameSpeed = 400 //millisecs
 
 // curl http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/3275\?res\=3hourly\&key\=[YOUR_API_KEY] | python -m json.tool > loftus_3hr_forecast.json
-const loftus = require('./loftus_3hr_forecast.json');
-const weather_data = loftus.SiteRep.DV.Location.Period[0].Rep.map((data) => {
+const loftus = require('./charmouth_3hr_forecast.json');
+const weatherData = loftus.SiteRep.DV.Location.Period[0].Rep.map((data) => {
 	return {
 		"time": data.$,
 		"direction": data.D,
@@ -12,69 +14,72 @@ const weather_data = loftus.SiteRep.DV.Location.Period[0].Rep.map((data) => {
 	};
 });
 let iteration = 0;
-let num_data_points = weather_data.length;
-let current_grid_ref = {"x": 7, "y": 7};
+let numDataPoints = weatherData.length;
+let currentGridRef = {"x": gridSize/2, "y": gridSize/2};
 
-// Gameloop
-setInterval(() => {
+// Game loop
+const main = setInterval(() => {
 
-	if (iteration <= num_data_points) {
+	let exitGame = false;
 
+	while (!exitGame) {
 		let grid = createGrid();
 		
 		// Mark the grid
-		grid[current_grid_ref.y][current_grid_ref.x] = 'x';
+		grid[currentGridRef.y][currentGridRef.x] = 'x';
 
+		// Print the grid
 		console.log(grid.toString());
 
 		// Reset the mark
-		grid[current_grid_ref.y][current_grid_ref.x] = ' ';
+		grid[currentGridRef.y][currentGridRef.x] = ' ';
 
-		if (typeof weather_data[iteration] == 'undefined') process.exit();
+		if (typeof weatherData[iteration] == 'undefined') process.exit();
 
-		updateCurrentGridReference(weather_data[iteration].direction);
+		updateCurrentGridReference(weatherData[iteration].direction);
 
 		setTimeout(() => {
 			resetView();
-		}, 200);
+		}, gameSpeed - 1);
 
 		iteration++;
 
-	} else {
-		process.exit();
+		if (iteration <= numDataPoints) {
+			exitGame = true;
+		} 
 	}
 
-}, 1000);
+}, gameSpeed);
 
 
 
 // Helpers
 let createGrid = () => {
 	const grid = new Table();
-	for (let i=0;i<=14;i++) {
+	for (let i=0;i<=gridSize;i++) {
 		grid.push(buildGridRow());
 	}
 	return grid;
 }
 
 function buildGridRow() {
-	return Array.apply(null, Array(14)).map(String.prototype.valueOf, ' ');
+	return Array.apply(null, Array(gridSize)).map(String.prototype.valueOf, ' ');
 }
 
 function updateCurrentGridReference(direction) {
 	direction.split('').map((value) => {
 		switch(value) {
 			case 'N':
-				current_grid_ref.y++;
+				currentGridRef.y++;
 			break;
 			case 'S':
-				current_grid_ref.y--;
+				currentGridRef.y--;
 			break;
 			case 'E':
-				current_grid_ref.x--;
+				currentGridRef.x--;
 			break;
 			case 'W':
-				current_grid_ref.x++;
+				currentGridRef.x++;
 			break;
 		}
 	});
