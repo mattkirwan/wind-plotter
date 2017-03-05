@@ -1,39 +1,60 @@
 'use strict';
 
-var Table = require('cli-table');
+const Table = require('cli-table');
 
 // curl http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/3275\?res\=3hourly\&key\=[YOUR_API_KEY] | python -m json.tool > loftus_3hr_forecast.json
-let loftus = require('./loftus_3hr_forecast.json');
-
-let filtered = loftus.SiteRep.DV.Location.Period[0].Rep.map((data) => {
+const loftus = require('./loftus_3hr_forecast.json');
+const weather_data = loftus.SiteRep.DV.Location.Period[0].Rep.map((data) => {
 	return {
 		"time": data.$,
 		"direction": data.D,
 		"wind_speed": data.S,
 	};
 });
-
-filtered.map((data) => {
-	console.log(data.direction)
-});
-
+let iteration = 0;
+let num_data_points = weather_data.length;
 let current_grid_ref = {"x": 7, "y": 7};
 
-// Create grid
-var table = new Table();
-for (let i=0;i<=14;i++) {
-	table.push(buildGridRow());
+// Gameloop
+setInterval(() => {
+
+	if (iteration <= num_data_points) {
+
+		let grid = createGrid();
+		grid[current_grid_ref.y][current_grid_ref.x] = 'x'; // Mark the grid
+		console.log(grid.toString()); // Print the grid
+		grid[current_grid_ref.y][current_grid_ref.x] = ' '; // Reset the mark
+
+		if (typeof weather_data[iteration] == 'undefined') process.exit();
+		
+		updateCurrentGridReference(weather_data[iteration].direction);
+
+		setTimeout(() => {
+			resetView();
+		}, 200);
+
+		iteration++;
+
+	} else {
+		process.exit();
+	}
+
+}, 1000);
+
+let createGrid = () => {
+	const grid = new Table();
+	for (let i=0;i<=14;i++) {
+		grid.push(buildGridRow());
+	}
+	return grid;
 }
 
-let write = (filtered, iteration) => {
+function buildGridRow() {
+	return Array.apply(null, Array(14)).map(String.prototype.valueOf, ' ');
+}
 
-	table[current_grid_ref.y][current_grid_ref.x] = 'x';
-	console.log(table.toString());
-	table[current_grid_ref.y][current_grid_ref.x] = ' ';
-
-	if (typeof filtered[iteration] == 'undefined') process.exit();
-
-	switch(filtered[iteration].direction) {
+function updateCurrentGridReference(direction) {
+	switch(direction) {
 		
 		case 'N':
 			current_grid_ref.y++;
@@ -107,34 +128,8 @@ let write = (filtered, iteration) => {
 			current_grid_ref.x++;
 		break;
 	}
-
-};
-
-let resetView = () => {
-	process.stdout.moveCursor(0, -31);
-};
-
-let i = 0;
-let num_data_points = filtered.length;
-
-let gameLoop = setInterval(() => {
-
-	if (i <= num_data_points) {
-		write(filtered, i);
-
-		setTimeout(() => {
-			resetView();
-		}, 200);
-
-		i++;	
-	} else {
-		process.exit();
-	}
-
-}, 1000);
-
-
-function buildGridRow() {
-	return Array.apply(null, Array(14)).map(String.prototype.valueOf, ' ');
 }
 
+function resetView() {
+	process.stdout.moveCursor(0, -31);
+};
